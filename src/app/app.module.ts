@@ -8,11 +8,12 @@ import { ElementComponent } from './components/element/element.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PermsDirective } from './perms.directive';
-import { MouseeventDirective } from './mouseevent.directive';
-import { DateLocalizePipe } from './date-localize.pipe';
 import { UserlistComponent } from './components/userlist/userlist.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DateLocalizePipe } from './pipes/date-localize.pipe';
+import { MouseeventDirective } from './directives/mouseevent.directive';
+import { PermsDirective } from './directives/perms.directive';
+import { JwtInterceptorService } from './interceptors/jwt.interceptor.service';
 
 @NgModule({
   declarations: [
@@ -33,10 +34,13 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
   ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
+  ],
   // exports: [
   //   PermsDirective
   // ],
-  providers: [],
+  // providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
