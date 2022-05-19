@@ -8,11 +8,20 @@ import { ElementComponent } from './components/element/element.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PermsDirective } from './perms.directive';
+import { MouseeventDirective } from './mouseevent.directive';
+import { DateLocalizePipe } from './date-localize.pipe';
+import { UserlistComponent } from './components/userlist/userlist.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ElementComponent
+    ElementComponent,
+    PermsDirective,
+    MouseeventDirective,
+    DateLocalizePipe,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
@@ -21,8 +30,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
+  // exports: [
+  //   PermsDirective
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })

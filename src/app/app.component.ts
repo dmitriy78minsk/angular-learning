@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test-ang';
+  public title = 'test-ang';
+  public login: string = 'empty';
+
+  public curDate = new Date();
+
+  changeLogin(login: string) {
+    this.login = login;
+  }
 }

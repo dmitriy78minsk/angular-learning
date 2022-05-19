@@ -1,5 +1,19 @@
 <app-element
-  caption="Header"
-
+  caption="Caption from app"
+  (onChangeLogin)="changeLogin($event)"
 >
+
+<ng-container additional_content>additional_content</ng-container>
+
+  <div>
+    Content From Main Component
+  </div>
 </app-element>
+
+{{login}}
+<br>
+Pipe: {{curDate | dateLocalize}}
+
+<app-userlist>
+
+</app-userlist>

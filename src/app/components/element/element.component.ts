@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { Observable, Subscription } from 'rxjs';
@@ -12,6 +12,7 @@ import { Observable, Subscription } from 'rxjs';
 export class ElementComponent implements OnInit, OnDestroy {
 
   @Input() caption = '';
+  @Output() onChangeLogin = new EventEmitter<string>();
 
   private subs: Subscription | undefined;
 
@@ -30,15 +31,17 @@ export class ElementComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs = this.viewModel.controls['login'].valueChanges.
     pipe(untilDestroyed(this))
-    .subscribe((value: string) => {
-      console.log('login:', value),
-      (error: any) => {
-
-      },
-      () => {
-        console.log('end subscribe')
-      }
-    })
+    .subscribe
+      (
+        {
+          next: (value: string) => {
+            console.log('login:', value);
+            this.onChangeLogin.emit(value);
+          },
+          error: (error: any) => {  },
+          complete:  () => { console.log('end subscribe') }
+        }
+      )
   }
 
    validateAllFields(formGroup: FormGroup | FormArray) {
