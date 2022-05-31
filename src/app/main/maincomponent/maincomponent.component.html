@@ -1,0 +1,10 @@
+
+<h1 class="header"><a routerLink="/">This is MainComponent</a> </h1>
+<div>
+    <button mat-button [matMenuTriggerFor]="menu">Angular</button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="/rxjs" routerLinkActive="active">RxJS</button>
+    <button mat-menu-item>All</button>
+    </mat-menu>
+</div>
+<router-outlet></router-outlet>

@@ -44,22 +44,6 @@ export class ElementComponent implements OnInit, OnDestroy {
       )
   }
 
-   validateAllFields(formGroup: FormGroup | FormArray) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.updateValueAndValidity({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFields(control);
-        control.updateValueAndValidity({ onlySelf: true });
-      } else if (control instanceof FormArray) {
-        this.validateAllFields(control);
-        control.updateValueAndValidity({ onlySelf: true });
-      }
-    });
-    formGroup.updateValueAndValidity({ onlySelf: true });
-  }
-
   save(name: string) {
     debugger
     this.viewModel.markAllAsTouched();

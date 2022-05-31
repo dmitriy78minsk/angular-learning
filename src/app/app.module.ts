@@ -14,6 +14,12 @@ import { DateLocalizePipe } from './pipes/date-localize.pipe';
 import { MouseeventDirective } from './directives/mouseevent.directive';
 import { PermsDirective } from './directives/perms.directive';
 import { JwtInterceptorService } from './interceptors/jwt.interceptor.service';
+import { MainComponent } from './main/maincomponent/maincomponent.component';
+import { HomeComponent } from './main/home/home.component';
+import { MatMenuModule} from '@angular/material/menu'
+import { MatButtonModule } from '@angular/material/button';
+import { RxModule } from './main/rxjs/rx.module';
+import { Component404 } from './components/component404/component404.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,10 @@ import { JwtInterceptorService } from './interceptors/jwt.interceptor.service';
     PermsDirective,
     MouseeventDirective,
     DateLocalizePipe,
-    UserlistComponent
+    UserlistComponent,
+    MainComponent,
+    HomeComponent,
+    Component404
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,11 @@ import { JwtInterceptorService } from './interceptors/jwt.interceptor.service';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatMenuModule,
+    MatButtonModule,
+    RxModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true}
